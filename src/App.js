@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RepetitionExercise from "./components/RepetitionExercise";
 import DurationExercise from "./components/DurationExercise";
+import WeightExercise from "./components/WeightExercise"; // Import the new component
 import "./App.css";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     { name: "Jumping Jacks", type: "repetition" },
     { name: "Running", type: "duration" },
     { name: "Sit Ups", type: "duration" },
+    { name: "Weights", type: "weight" }, // New type
   ];
 
   return (
@@ -38,12 +40,17 @@ function App() {
               name={selectedExercise.name}
               onBackToMenu={() => setSelectedExercise(null)}
             />
-          ) : (
+          ) : selectedExercise.type === "duration" ? (
             <DurationExercise
               name={selectedExercise.name}
               onBackToMenu={() => setSelectedExercise(null)}
             />
-          )}
+          ) : selectedExercise.type === "weight" ? (
+            <WeightExercise
+              name={selectedExercise.name}
+              onBackToMenu={() => setSelectedExercise(null)}
+            />
+          ) : null}
         </div>
       )}
     </div>
